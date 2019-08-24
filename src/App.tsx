@@ -1,12 +1,30 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+
 import { Routing } from './Routing';
+import MenuTemplate from './templates/MenuTemplate';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: '#f0f0f1',
+    height: '100vh'
+  },
+});
 
 const App: React.FC = () => {
+  const classes = useStyles();
   return (
-    <div>
-      <h1>Menu</h1>
-      <Routing />
-    </div>
+    <>
+      <CssBaseline />
+      <Container maxWidth="lg" classes={{
+        root: classes.root,
+      }}>
+        <MenuTemplate />
+        <Routing />
+      </Container>
+    </>
   );
 }
 
