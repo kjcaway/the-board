@@ -23,13 +23,19 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginRight: theme.spacing(1),
   },
   textField2: {
-    order: 1,
+    width: '50%',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
   row: {
+    flexWrap: 'wrap',
+    width: '100%'
+  },
+  btn: {
+    marginTop: '2rem',
+    width: '100%',
     display: 'flex',
-    width: '90%'
+    justifyContent: 'flex-end',
   }
 }));
 
@@ -79,14 +85,16 @@ function WriteTemplate() {
           defaultValue=""
           className={classes.textField2}
           helperText="Some important text2"
-          fullWidth
           margin="normal"
           variant="filled"
         />
       </div>
-      <div className={classes.row}>
-        <Button variant="contained" color="primary" className={classes.textField2}>
+      <div className={classes.btn}>
+        <Button variant="contained" color="primary" className={classes.textField}>
           Primary
+        </Button>
+        <Button variant="contained" color="default" className={classes.textField}>
+          Default
         </Button>
       </div>
     </div>
