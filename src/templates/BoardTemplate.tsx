@@ -15,11 +15,15 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { ListItemIcon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      width: '100%',
+      height: '90%',
+      position: 'relative',
+    },
+    listRoot: {
       width: '100%',
       backgroundColor: theme.palette.background.paper,
     },
@@ -27,7 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'inline',
     },
     speedDial: {
-      backgroundColor: theme.palette.background.paper,
+      position: 'absolute',
+      bottom: theme.spacing(5),
+      right: theme.spacing(3),
     },
   }),
 );
@@ -58,74 +64,75 @@ export default function BoardTemplate() {
   const speedDialClassName = clsx(classes.speedDial);
 
   return (
-    <List className={classes.root}>
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Brunch this weekend?"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                Ali Connors
+    <div className={classes.root}>
+      <List className={classes.listRoot}>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary="Brunch this weekend?"
+            secondary={
+              <React.Fragment>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.inline}
+                  color="textPrimary"
+                >
+                  Ali Connors
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
-          }
-        />
-        <ListItemIcon>
-          <SpeedDial
-            ariaLabel="SpeedDial example"
-            className={speedDialClassName}
-            icon={<SpeedDialIcon />}
-            onBlur={handleClose}
+                {" — I'll be in your neighborhood doing errands this…"}
+              </React.Fragment>
+            }
+          />
+
+        </ListItem>
+        <Divider variant="inset" component="li" />
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary="Summer BBQ"
+            secondary={
+              <React.Fragment>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.inline}
+                  color="textPrimary"
+                >
+                  to Scott, Alex, Jennifer
+              </Typography>
+                {" — Wish I could come, but I'm out of town this…"}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+      </List>
+      <SpeedDial
+        ariaLabel="SpeedDial example"
+        className={speedDialClassName}
+        icon={<SpeedDialIcon />}
+        onBlur={handleClose}
+        onClick={handleClick}
+        onClose={handleClose}
+        onFocus={handleOpen}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+        open={open}
+        direction='up'
+      >
+        {actions.map(action => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
             onClick={handleClick}
-            onClose={handleClose}
-            onFocus={handleOpen}
-            onMouseEnter={handleOpen}
-            onMouseLeave={handleClose}
-            open={open}
-            direction='left'
-          >
-            {actions.map(action => (
-              <SpeedDialAction
-                key={action.name}
-                icon={action.icon}
-                tooltipTitle={action.name}
-                onClick={handleClick}
-              />
-            ))}
-          </SpeedDial>
-        </ListItemIcon >
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Summer BBQ"
-          secondary={
-            <React.Fragment>
-              <Typography
-                component="span"
-                variant="body2"
-                className={classes.inline}
-                color="textPrimary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-    </List>
+          />
+        ))}
+      </SpeedDial>
+    </div>
   );
 }

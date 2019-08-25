@@ -3,6 +3,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import {history} from './store/configureStore';
 
 import BoardTemplate from './templates/BoardTemplate'
+import WriteTemplate from './templates/WriteTemplate'
 
 export class Routing extends Component {
   render() {
@@ -12,7 +13,7 @@ export class Routing extends Component {
           <Switch>
             <Route exact path="/" component={BoardTemplate}></Route>
             <Route path="/login" component={() => { return <>Login</>}}></Route>
-            <Route path="/man" component={() => { return <>man</>}}></Route>
+            <Route path="/write" component={WriteTemplate}></Route>
           </Switch>
         </Router>
       </>
