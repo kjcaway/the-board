@@ -5,6 +5,8 @@ import {history} from './store/configureStore';
 import BoardTemplate from './templates/BoardTemplate'
 import WriteTemplate from './templates/WriteTemplate'
 
+import BoardContainer from './containers/BoardContainer'
+
 export class Routing extends Component {
   render() {
     return (
@@ -14,6 +16,7 @@ export class Routing extends Component {
             <Route exact path="/" component={BoardTemplate}></Route>
             <Route path="/login" component={() => { return <>Login</>}}></Route>
             <Route path="/write" component={WriteTemplate}></Route>
+            <Route path="/board" component={BoardContainer}></Route>
           </Switch>
         </Router>
       </>
