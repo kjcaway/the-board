@@ -9,11 +9,13 @@ function* fetchBoardSaga(action: Actions.BoardActionType) {
             name: action.payload
         }
         const { data } = yield call([axios, 'get'], '/api/contents/', {
-          params: {
-            where: {}
-          }
+            params: {
+                where: {}
+            }
         })
-        yield put(Actions.getBoardSuccess(data));
+        console.log('yield call result')
+        console.log(data)
+        yield put(Actions.getBoardSuccess(data.data));
     } catch (error) {
         yield put(Actions.getBoardFail(error.response));
     }

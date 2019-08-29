@@ -46,7 +46,7 @@ const actions = [
 
 
 export default function BoardTemplate() {
-  const classes = useStyles();
+  const classes = useStyles({});
 
   const [open, setOpen] = React.useState(false);
 

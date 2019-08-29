@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 function WriteTemplate() {
 
-  const classes = useStyles();
+  const classes = useStyles({});
 
   return (
     <div className={classes.root} >

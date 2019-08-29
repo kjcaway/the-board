@@ -68,7 +68,7 @@ export default function MenuTemplate() {
   function handleClose() {
     setAnchorEl(null);
   }
-  const classes = useStyles();
+  const classes = useStyles({});
 
   return (
     <div className={classes.root}>

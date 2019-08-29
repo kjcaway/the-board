@@ -2,24 +2,36 @@ import React, { Component } from 'react'
 import {connect } from 'react-redux';
 
 import * as BoardActions from '../store/actions/boardActions'
+import BoardList from '../components/board/BoardList';
 
 interface Props {
-  data: [];
-  fetchGetBoard: any;
+  boardList: [];
+  status: string;
+  fetchGetBoard: Function;
 }
 interface State {
 }
 
 class BoardContainer extends Component<Props, State> {
   componentDidMount(){
-    this.props.fetchGetBoard()
+    console.log('BoardContainer componentDidMount!')
+    this.props.fetchGetBoard();
+    console.log(this.props)
   }
 
   render() {
     return (
-      <div>
-        container
-      </div>
+      <>
+        {
+          this.props.status === "SUCCESS"
+          ?
+          <BoardList 
+            data={this.props.boardList}
+          />
+          :
+          <div></div>
+        }
+      </>
     )
   }
 }
@@ -27,7 +39,8 @@ class BoardContainer extends Component<Props, State> {
 export default connect(
   (state: any) => {
     return {
-      data: state.board.data
+      boardList: state.board.data,
+      status: state.board.status
     }
   },
   (dispatch) => {

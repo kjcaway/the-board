@@ -8,16 +8,19 @@ export const reducer = (state=initialState, action: Actions.BoardActionType) => 
     case Actions.GETBOARD:
       return {
         ...state,
+        status: 'LOADING',
         payload: action.payload
       }
     case Actions.GETBOARD_SUCCESS:
       return {
         ...state,
+        status: 'SUCCESS',
         data: action.data
       }
     case Actions.GETBOARD_FAIL:
       return {
         ...state,
+        status: 'FAIL',
         error: action.error
       }
     default:
