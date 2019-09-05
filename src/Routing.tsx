@@ -5,7 +5,7 @@ import {history} from './store/configureStore';
 import BoardTemplate from './templates/BoardTemplate'
 import WriteTemplate from './templates/WriteTemplate'
 
-import BoardContainer from './containers/BoardContainer'
+import BoardContainer from './containers/board/BoardContainer'
 
 export class Routing extends Component {
   render() {
@@ -13,10 +13,11 @@ export class Routing extends Component {
       <>
         <Router history={history}>
           <Switch>
-            <Route exact path="/" component={BoardTemplate}></Route>
-            <Route path="/login" component={() => { return <>Login</>}}></Route>
-            <Route path="/write" component={WriteTemplate}></Route>
+            <Route exact path="/" component={BoardContainer}></Route>
             <Route path="/board" component={BoardContainer}></Route>
+            <Route path="/login" component={() => { return <>Login</>}}></Route>
+            <Route exact path="/temp/write" component={WriteTemplate}></Route>
+            <Route exact path="/temp/board" component={BoardTemplate}></Route>
           </Switch>
         </Router>
       </>

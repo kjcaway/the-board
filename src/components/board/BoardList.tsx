@@ -48,7 +48,7 @@ const BoardList = (props: Props) => {
             <ListItemText
               primary={row.title}
               secondary={
-                <React.Fragment>
+                <>
                   <Typography
                     component="span"
                     variant="body2"
@@ -58,7 +58,7 @@ const BoardList = (props: Props) => {
                     {row.date_write}
                 </Typography>
                   - {row.contents}
-                </React.Fragment>
+                </>
               }
             />
 
@@ -70,11 +70,9 @@ const BoardList = (props: Props) => {
   }
 
   return (
-    <div className={classes.root}>
-      <List className={classes.listRoot}>
-        {mapToListItem(props.data)}
-      </List>
-    </div>
+    <List className={classes.listRoot}>
+      {mapToListItem(props.data)}
+    </List>
   )
 }
 

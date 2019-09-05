@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux';
 
-import * as BoardActions from '../store/actions/boardActions'
-import BoardList from '../components/board/BoardList';
+import * as BoardActions from '../../store/actions/boardActions'
+import BoardList from '../../components/board/BoardList';
+
+import SpeedDialContainer from './SpeedDialContainer'
 
 interface Props {
   boardList: [];
@@ -14,9 +16,7 @@ interface State {
 
 class BoardContainer extends Component<Props, State> {
   componentDidMount(){
-    console.log('BoardContainer componentDidMount!')
     this.props.fetchGetBoard();
-    console.log(this.props)
   }
 
   render() {
@@ -25,11 +25,18 @@ class BoardContainer extends Component<Props, State> {
         {
           this.props.status === "SUCCESS"
           ?
-          <BoardList 
-            data={this.props.boardList}
-          />
+          <div style={{
+            width: '100%',
+            height: '90%',
+            position: 'relative',
+          }}>
+            <BoardList 
+              data={this.props.boardList}
+            />
+            <SpeedDialContainer />
+          </div>
           :
-          <div></div>
+          <></>
         }
       </>
     )
