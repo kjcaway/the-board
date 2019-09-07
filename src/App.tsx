@@ -7,7 +7,6 @@ import MenuContainer from './containers/common/MenuContainer';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#f0f0f1',
     height: '100vh'
   },
 });
@@ -15,17 +14,15 @@ const useStyles = makeStyles({
 const App: React.FC = () => {
   const classes = useStyles({});
   return (
-    <>
-      <Container
-        maxWidth="lg"
-        classes={{
-          root: classes.root,
-        }}
-      >
-        <MenuContainer />
-        <Routing />
-      </Container>
-    </>
+    <Container
+      maxWidth="lg"
+      classes={{
+        root: classes.root,
+      }}
+    >
+      <MenuContainer />
+      <Routing />
+    </Container>
   );
 }
 

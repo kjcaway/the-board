@@ -13,6 +13,7 @@ interface Props {
   handleClose: Function;
   title: string;
   anchorEl: Event;
+  menus: any
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,6 +48,7 @@ const Top = (props: Props) => {
           <TopLeftMenu 
             onClick={props.handleClose}
             anchorEl={props.anchorEl}
+            menus={props.menus}
           />
           <TopRight title={props.title}/>
         </Toolbar>

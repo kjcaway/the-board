@@ -11,6 +11,17 @@ interface State {
   title: string;
 }
 
+const menus = [
+  {
+    name: 'Board',
+    route: '/board'
+  },
+  {
+    name: 'Test write',
+    route: '/temp/write'
+  },
+]
+
 class MenuContainer extends Component<Props, State> {
   constructor(props: Props){
     super(props);
@@ -44,6 +55,7 @@ class MenuContainer extends Component<Props, State> {
         handleClose={this.handleClose}
         title={this.state.title}
         anchorEl={this.state.anchorEl}
+        menus={menus}
       />
     )
   }

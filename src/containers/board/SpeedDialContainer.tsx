@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 
 import SpeedDialBtn from '../../components/board/SpeedDialBtn';
 
-import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+
+import {history} from '../../store/configureStore';
+
 
 interface Props {
 }
@@ -11,8 +14,8 @@ interface State {
   open: boolean;
 }
 const options = [
-  { icon: <SaveIcon />, name: 'Save' },
-  { icon: <DeleteIcon />, name: 'Delete' },
+  { icon: <CreateOutlinedIcon />, name: 'Write', route: '/write' },
+  { icon: <DeleteIcon />, name: 'Delete', route: '/write' },
 ];
 
 class SpeedDialContainer extends Component<Props, State> {
@@ -23,10 +26,15 @@ class SpeedDialContainer extends Component<Props, State> {
     }
   }
 
-  handleClick = () => {
+  handleClick = (url: string) => {
     this.setState(prevState => ({
       open: !prevState.open
     }));
+    console.log(url)
+
+    if(url){
+      history.push(`${url}`)
+    }
   }
 
   handleOpen = () => {

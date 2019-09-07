@@ -7,6 +7,7 @@ import TagFacesOutlinedIcon from '@material-ui/icons/TagFacesOutlined';
 interface Props {
   onClick: any;
   anchorEl: any;
+  menus: any;
 }
 
 const StyledMenu = withStyles({
@@ -41,20 +42,10 @@ const StyledMenuItem = withStyles(theme => ({
 }))(MenuItem);
 
 const TopLeftMenu = (props: Props) => {
-  const menus = [
-    {
-      name: 'Board',
-      route: '/board'
-    },
-    {
-      name: 'Test write',
-      route: '/temp/write'
-    },
-  ]
   const mapMenuItem = (arr: Array<any>) => {
     return arr.map((one) => {
       return (
-        <StyledMenuItem>
+        <StyledMenuItem key={one.name}>
           <ListItemIcon>
             <TagFacesOutlinedIcon />
           </ListItemIcon>
@@ -72,7 +63,7 @@ const TopLeftMenu = (props: Props) => {
       open={Boolean(props.anchorEl)}
       onClose={() => props.onClick()}
     >
-      {mapMenuItem(menus)}
+      {mapMenuItem(props.menus)}
     </StyledMenu>
   )
 }

@@ -18,8 +18,24 @@ function* fetchBoardSaga(action: Actions.BoardActionType) {
   }
 }
 
+function* writeBoardSaga(action: Actions.BoardActionType) {
+  try {
+    const { data } = yield call([axios, 'post'], '/api/contents/', {
+      params: {
+        where: {}
+      }
+    })
+    console.log('yield call result')
+    console.log(data)
+    yield put(Actions.writeBoardSuccess(data.data));
+  } catch (error) {
+    yield put(Actions.writeBoardFail(error.response));
+  }
+}
+
 export default function* watchBoard() {
   // type의 action이 실행되면 fetchBoardSaga도 항상(Every) 실행한다
   yield takeEvery(Actions.GETBOARD, fetchBoardSaga);
+  yield takeEvery(Actions.WRITEBOARD, writeBoardSaga);
 }
 

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     listRoot: {
       width: '100%',
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: '#f0f0f1',
     },
     inline: {
       display: 'inline',

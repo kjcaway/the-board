@@ -44,7 +44,7 @@ const SpeedDialBtn = (props: Props) => {
       className={classes.speedDial}
       icon={<SpeedDialIcon />}
       onBlur={props.handleClose}
-      onClick={props.handleClick}
+      onClick={() => props.handleClick('')}
       onClose={props.handleClose}
       onFocus={props.handleOpen}
       onMouseEnter={props.handleOpen}
@@ -57,7 +57,7 @@ const SpeedDialBtn = (props: Props) => {
           key={one.name}
           icon={one.icon}
           tooltipTitle={one.name}
-          onClick={props.handleClick}
+          onClick={() => props.handleClick(one.route)}
         />
       ))}
     </SpeedDial>
