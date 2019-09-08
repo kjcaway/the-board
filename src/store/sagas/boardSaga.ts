@@ -7,10 +7,12 @@ function* fetchBoardSaga(action: Actions.BoardActionType) {
   try {
     const { data } = yield call([axios, 'get'], '/api/contents/', {
       params: {
-        where: {}
+        where: {
+          category : '00'
+        }
       }
     })
-    console.log('yield call result')
+    console.log('fetchBoardSaga call success. result')
     console.log(data)
     yield put(Actions.getBoardSuccess(data.data));
   } catch (error) {
@@ -18,14 +20,16 @@ function* fetchBoardSaga(action: Actions.BoardActionType) {
   }
 }
 
-function* writeBoardSaga(action: Actions.BoardActionType) {
+function* writeBoardSaga(action: any) {
   try {
-    const { data } = yield call([axios, 'post'], '/api/contents/', {
-      params: {
-        where: {}
-      }
-    })
-    console.log('yield call result')
+    const formData = new FormData();
+    formData.append('title', action.payload.title);
+    formData.append('contents', action.payload.contents);
+    formData.append('category', '00');
+    formData.append('writer', 'testtesttest');
+
+    const { data } = yield call([axios, 'post'], '/api/contents/', formData)
+    console.log('writeBoardSaga call success. result')
     console.log(data)
     yield put(Actions.writeBoardSuccess(data.data));
   } catch (error) {

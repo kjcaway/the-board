@@ -14,14 +14,11 @@ interface Props {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: '100%',
-      height: '90%',
-      position: 'relative',
-    },
     listRoot: {
       width: '100%',
       backgroundColor: '#f0f0f1',
+      overflow: 'auto',
+      maxHeight: 800,
     },
     inline: {
       display: 'inline',
@@ -40,7 +37,7 @@ const BoardList = (props: Props) => {
   const mapToListItem = (rows: []) => {
     return rows.map((row: any) => {
       return (
-        <>
+        <React.Fragment key={row.seq}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="Remy Sharp" src={row.file_path} />
@@ -64,7 +61,7 @@ const BoardList = (props: Props) => {
 
           </ListItem>
           <Divider variant="inset" component="li" />
-        </>
+        </React.Fragment>
       )
     })
   }

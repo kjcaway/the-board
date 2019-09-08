@@ -33,7 +33,6 @@ export const reducer = (state=initialState, action: Actions.BoardActionType) => 
       return {
         ...state,
         status: 'SUCCESS',
-        data: action.data
       }
     case Actions.WRITEBOARD_FAIL:
       return {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux';
+import moment from 'moment';
+import { convertFromRaw} from 'draft-js';
 
 import * as BoardActions from '../../store/actions/boardActions'
 import BoardList from '../../components/board/BoardList';
@@ -20,6 +22,14 @@ class BoardContainer extends Component<Props, State> {
   }
 
   render() {
+    let boardList = this.props.boardList || [];
+    boardList.map((one: any) => {
+      one.date_write = moment(one.date_write, moment.HTML5_FMT.DATETIME_LOCAL_MS).add(moment().utcOffset(), 'm').fromNow(); // utc to local, fromNow
+      const blocks = convertFromRaw(JSON.parse(one.contents)).getPlainText() // db to simple view data
+      one.contents = blocks;
+    })
+
+
     return (
       <>
         {
@@ -31,7 +41,7 @@ class BoardContainer extends Component<Props, State> {
             position: 'relative',
           }}>
             <BoardList 
-              data={this.props.boardList}
+              data={boardList}
             />
             <SpeedDialContainer />
           </div>

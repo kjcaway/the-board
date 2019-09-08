@@ -28,15 +28,19 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: '50%',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    backgroundColor: '#ffffff',
   },
   row: {
     width: '100%'
   },
   editorRow: {
     width: '90%',
+    border: '1px solid darkgray',
+    borderRadius: '0.4rem',
     backgroundColor: '#ffffff',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    padding: 10 
   },
   btnRow: {
     marginTop: '2rem',
@@ -55,14 +59,14 @@ const WriteForm = (props: any) => {
         Write an Article.
       </Typography>
       <div className={classes.row}>
-      <TextField
+        <TextField
           id="title"
           name="title"
           label="Title"
           defaultValue=""
           className={classes.txtFieldHalf}
           margin="normal"
-          variant="standard"
+          variant="outlined"
         />
       </div>
       <div className={classes.editorRow}>
@@ -72,10 +76,14 @@ const WriteForm = (props: any) => {
         />
       </div>
       <div className={classes.btnRow}>
-        <Button variant="contained" color="primary" className={classes.txtField}>
+        <Button variant="contained" color="primary" className={classes.txtField}
+          onClick={props.onSaveClick}
+        >
           Save
         </Button>
-        <Button variant="contained" color="default" className={classes.txtField}>
+        <Button variant="contained" color="default" className={classes.txtField}
+          onClick={props.onCancelClick}
+        >
           Cancel
         </Button>
       </div>
