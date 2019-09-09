@@ -23,10 +23,12 @@ class BoardContainer extends Component<Props, State> {
 
   render() {
     let boardList = this.props.boardList || [];
+
     boardList.map((one: any) => {
-      one.date_write = moment(one.date_write, moment.HTML5_FMT.DATETIME_LOCAL_MS).add(moment().utcOffset(), 'm').fromNow(); // utc to local, fromNow
       const blocks = convertFromRaw(JSON.parse(one.contents)).getPlainText() // db to simple view data
-      one.contents = blocks;
+      one.date_write_from_now = moment(one.date_write, moment.HTML5_FMT.DATETIME_LOCAL_MS).add(moment().utcOffset(), 'm').fromNow(); // utc to local, fromNow
+      one.contents_text = blocks;
+      return one;
     })
 
 

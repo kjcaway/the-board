@@ -8,7 +8,7 @@ import ProgressContainer from './containers/common/ProgressContainer';
 
 const useStyles = makeStyles({
   root: {
-    height: '920px',
+    // height: '920px',
     backgroundColor: '#f0f0f1',
     paddingLeft: 0,
     paddingRight: 0,

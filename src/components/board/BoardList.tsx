@@ -52,9 +52,9 @@ const BoardList = (props: Props) => {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {row.date_write}
+                    {row.date_write_from_now}
                 </Typography>
-                  - {row.contents}
+                  - {row.contents_text}
                 </>
               }
             />

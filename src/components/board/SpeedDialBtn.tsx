@@ -15,18 +15,6 @@ interface Props {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: '100%',
-      height: '90%',
-      position: 'relative',
-    },
-    listRoot: {
-      width: '100%',
-      backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-      display: 'inline',
-    },
     speedDial: {
       position: 'absolute',
       bottom: theme.spacing(5),
