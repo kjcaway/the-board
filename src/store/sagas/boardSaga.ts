@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import * as Actions from "../actions/boardActions";
-import axios from "axios";
+import defaultClient from "../../lib/defaultClient";
 
 function* fetchBoardSaga(action: Actions.BoardActionType) {
   // try catch finally 구문으로 오류 제어
   try {
-    const { data } = yield call([axios, 'get'], '/api/contents/', {
+    const { data } = yield call([defaultClient, 'get'], '/api/contents/', {
       params: {
         where: {
           category : '00'
@@ -28,7 +28,7 @@ function* writeBoardSaga(action: any) {
     formData.append('category', '00');
     formData.append('writer', 'testtesttest');
 
-    const { data } = yield call([axios, 'post'], '/api/contents/', formData)
+    const { data } = yield call([defaultClient, 'post'], '/api/contents/', formData)
     console.log('writeBoardSaga call success. result')
     console.log(data)
     yield put(Actions.writeBoardSuccess(data.data));
