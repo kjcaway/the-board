@@ -12,7 +12,6 @@ interface Props {
 interface State {
   progress: number;
 }
-
 class ProgressContainer extends Component<Props, State> {
   constructor(props: Props){
     super(props);
@@ -29,7 +28,7 @@ class ProgressContainer extends Component<Props, State> {
     if(value === 100){
       this.setState({
         progress: value
-      })
+      }, this.onInit)
     } else{
       this.setState({
         progress: value
@@ -37,9 +36,28 @@ class ProgressContainer extends Component<Props, State> {
     }
   }
 
+  onInit = () => {
+    setTimeout(() => {
+      this.setState({
+        progress: 0
+      })
+    }, 1000)
+  }
+
   render() {
     return (
-      <LinearProgress color="primary" variant="determinate" value={this.state.progress} />
+      <>
+        {
+          this.state.progress !== 0?
+          <LinearProgress 
+            color="primary" 
+            variant="determinate" 
+            value={this.state.progress}
+          />
+          :
+          <></>
+        }
+      </>
     )
   }
 }
