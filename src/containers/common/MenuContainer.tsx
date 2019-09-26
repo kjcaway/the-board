@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Top from '../../components/common/Top';
 import {history} from '../../store/configureStore';
-
+import * as properties from '../../lib/properties'
 
 interface Props {
 }
@@ -10,17 +10,6 @@ interface State {
   anchorEl: any;
   title: string;
 }
-
-const menus = [
-  {
-    name: 'Board',
-    route: '/board'
-  },
-  {
-    name: 'Test write',
-    route: '/temp/write'
-  },
-]
 
 class MenuContainer extends Component<Props, State> {
   constructor(props: Props){
@@ -55,7 +44,7 @@ class MenuContainer extends Component<Props, State> {
         handleClose={this.handleClose}
         title={this.state.title}
         anchorEl={this.state.anchorEl}
-        menus={menus}
+        menuList={properties.MENU_LIST}
       />
     )
   }

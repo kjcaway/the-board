@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LinearProgress from '@material-ui/core/LinearProgress';
+import Progress from '../../components/common/Progress';
 
 // typescript window property add
 declare global {
@@ -11,12 +11,14 @@ interface Props {
 }
 interface State {
   progress: number;
+  active: boolean;
 }
 class ProgressContainer extends Component<Props, State> {
   constructor(props: Props){
     super(props);
     this.state ={
-      progress: 0
+      progress: 0,
+      active: false
     }
   }
 
@@ -27,11 +29,13 @@ class ProgressContainer extends Component<Props, State> {
   onChange = (value: number) => {
     if(value === 100){
       this.setState({
-        progress: value
+        progress: value,
+        active:true
       }, this.onInit)
     } else{
       this.setState({
-        progress: value
+        progress: value,
+        active:true
       })
     }
   }
@@ -39,25 +43,15 @@ class ProgressContainer extends Component<Props, State> {
   onInit = () => {
     setTimeout(() => {
       this.setState({
-        progress: 0
+        progress: 0,
+        active:false
       })
     }, 1000)
   }
 
   render() {
     return (
-      <>
-        {
-          this.state.progress !== 0?
-          <LinearProgress 
-            color="primary" 
-            variant="determinate" 
-            value={this.state.progress}
-          />
-          :
-          <></>
-        }
-      </>
+      <Progress active={this.state.active} progress={this.state.progress}/>
     )
   }
 }

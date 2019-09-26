@@ -1,22 +1,14 @@
 import React, { Component } from 'react'
 
 import SpeedDialBtn from '../../components/board/SpeedDialBtn';
-
-import DeleteIcon from '@material-ui/icons/Delete';
-import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
-
 import {history} from '../../store/configureStore';
-
+import * as properties from '../../lib/properties';
 
 interface Props {
 }
 interface State {
   open: boolean;
 }
-const options = [
-  { icon: <CreateOutlinedIcon />, name: 'Write', route: '/write' },
-  { icon: <DeleteIcon />, name: 'Delete', route: '/write' },
-];
 
 class SpeedDialContainer extends Component<Props, State> {
   constructor(props: Props){
@@ -57,7 +49,7 @@ class SpeedDialContainer extends Component<Props, State> {
         handleOpen={this.handleOpen}
         handleClose={this.handleClose}
         
-        options={options}
+        options={properties.SPEED_DIAL_OPTIONS}
       />
     )
   }

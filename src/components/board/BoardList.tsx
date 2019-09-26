@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 interface Props {
-  data : [];
+  data : Array<Object>;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const BoardList = (props: Props) => {
   const classes = useStyles({});
 
-  const mapToListItem = (rows: []) => {
+  const mapToListItem = (rows: Props["data"]) => {
     return rows.map((row: any) => {
       return (
         <React.Fragment key={row.seq}>

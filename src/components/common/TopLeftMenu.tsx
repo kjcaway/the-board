@@ -3,11 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { MenuProps } from '@material-ui/core/Menu';
 import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import TagFacesOutlinedIcon from '@material-ui/icons/TagFacesOutlined';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 
 interface Props {
-  onClick: any;
+  onClose: (e: any) => void;
   anchorEl: any;
-  menus: any;
+  menuList: Array<Object>;
 }
 
 const StyledMenu = withStyles({
@@ -20,11 +21,11 @@ const StyledMenu = withStyles({
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'center',
+      horizontal: 'left',
     }}
     transformOrigin={{
       vertical: 'top',
-      horizontal: 'center',
+      horizontal: 'left',
     }}
     {...props}
   />
@@ -41,15 +42,23 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
+const mapToComponent = (name: string) => {
+  switch(name){
+    case 'Board' : return <TagFacesOutlinedIcon/>
+    case 'Test write' : return <CreateOutlinedIcon/>
+    default: return <TagFacesOutlinedIcon/>
+  }
+}
+
 const TopLeftMenu = (props: Props) => {
   const mapMenuItem = (arr: Array<any>) => {
     return arr.map((one) => {
       return (
         <StyledMenuItem key={one.name}>
-          <ListItemIcon>
-            <TagFacesOutlinedIcon />
+          <ListItemIcon onClick={() => props.onClose(one.route)}>
+            {mapToComponent(one.name)}
           </ListItemIcon>
-          <ListItemText primary={one.name} onClick={() => props.onClick(one.route)}/>
+          <ListItemText primary={one.name} onClick={() => props.onClose(one.route)}/>
         </StyledMenuItem>
       )
     })
@@ -61,9 +70,9 @@ const TopLeftMenu = (props: Props) => {
       anchorEl={props.anchorEl}
       keepMounted
       open={Boolean(props.anchorEl)}
-      onClose={() => props.onClick()}
+      onClose={() => props.onClose(null)}
     >
-      {mapMenuItem(props.menus)}
+      {mapMenuItem(props.menuList)}
     </StyledMenu>
   )
 }

@@ -5,6 +5,9 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+
 interface Props {
   open: boolean;
   handleClick: any;
@@ -22,6 +25,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+const mapToComponent = (name: string) => {
+  switch(name){
+    case 'Write' : return <CreateOutlinedIcon/>
+    case 'Delete' : return <DeleteIcon/>
+    default: return <CreateOutlinedIcon/>
+  }
+}
 
 const SpeedDialBtn = (props: Props) => {
   const classes = useStyles({});
@@ -43,7 +54,7 @@ const SpeedDialBtn = (props: Props) => {
       {props.options.map((one: any) => (
         <SpeedDialAction
           key={one.name}
-          icon={one.icon}
+          icon={mapToComponent(one.name)}
           tooltipTitle={one.name}
           onClick={() => props.handleClick(one.route)}
         />

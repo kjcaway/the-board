@@ -4,6 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 
+interface Props {
+  title: string
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
@@ -14,10 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-interface Props {
-  title: string
-}
 
 const TopRight = (props: Props) => {
   const classes = useStyles({});

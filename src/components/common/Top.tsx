@@ -10,10 +10,10 @@ import TopLeftMenu from './TopLeftMenu';
 
 interface Props {
   handleClick: MouseEventHandler;
-  handleClose: Function;
+  handleClose: (e: any) => void;
   title: string;
-  anchorEl: Event;
-  menus: any
+  anchorEl: any;
+  menuList: Array<Object>;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -46,9 +46,9 @@ const Top = (props: Props) => {
             <MenuIcon />
           </IconButton>
           <TopLeftMenu 
-            onClick={props.handleClose}
+            onClose={props.handleClose}
             anchorEl={props.anchorEl}
-            menus={props.menus}
+            menuList={props.menuList}
           />
           <TopRight title={props.title}/>
         </Toolbar>

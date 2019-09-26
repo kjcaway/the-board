@@ -7,7 +7,7 @@ import * as BoardActions from '../../store/actions/boardActions'
 import {history} from '../../store/configureStore';
 
 interface Props {
-  writeBoard: any
+  writeBoard: (obj: any) => void; 
 }
 interface State {
   editorState: any

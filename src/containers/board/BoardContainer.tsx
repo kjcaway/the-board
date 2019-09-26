@@ -9,16 +9,16 @@ import BoardList from '../../components/board/BoardList';
 import SpeedDialContainer from './SpeedDialContainer'
 
 interface Props {
-  boardList: [];
+  boardList: Array<Object>;
   status: string;
-  fetchGetBoard: Function;
+  fetchGetBoard: (obj: any) => void;
 }
 interface State {
 }
 
 class BoardContainer extends Component<Props, State> {
   componentDidMount(){
-    this.props.fetchGetBoard();
+    this.props.fetchGetBoard({});
   }
 
   render() {
@@ -37,16 +37,12 @@ class BoardContainer extends Component<Props, State> {
         {
           this.props.status === "SUCCESS"
           ?
-          <div style={{
-            width: '100%',
-            height: '90%',
-            position: 'relative',
-          }}>
+          <>
             <BoardList 
               data={boardList}
             />
             <SpeedDialContainer />
-          </div>
+          </>
           :
           <></>
         }
