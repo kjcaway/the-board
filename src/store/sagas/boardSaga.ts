@@ -1,9 +1,9 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import * as Actions from "../actions/boardActions";
 import defaultClient from "../../lib/defaultClient";
-import * as commonActions from "../actions/commonActions"
+import * as BoardActions from "../actions/boardActions";
+import * as CommonActions from "../actions/commonActions"
 
-function* fetchBoardSaga(action: Actions.BoardActionType) {
+function* fetchBoardSaga(action: BoardActions.BoardActionType) {
   // try catch finally 구문으로 오류 제어
   try {
     const { data } = yield call([defaultClient, 'get'], '/api/contents/', {
@@ -13,12 +13,10 @@ function* fetchBoardSaga(action: Actions.BoardActionType) {
         }
       }
     })
-    console.log('fetchBoardSaga call success. result')
-    console.log(data)
-    yield put(Actions.getBoardSuccess(data.data));
+    yield put(BoardActions.getBoardSuccess(data.data));
   } catch (error) {
-    yield put(Actions.getBoardFail(error.response));
-    yield put(commonActions.pushMessage({
+    yield put(BoardActions.getBoardFail(error.response));
+    yield put(CommonActions.pushMessage({
       message: '불러오기 실패하였습니다.',
       category: 'error'
     }))
@@ -34,16 +32,14 @@ function* writeBoardSaga(action: any) {
     formData.append('writer', 'testtesttest');
 
     const { data } = yield call([defaultClient, 'post'], '/api/contents/', formData)
-    console.log('writeBoardSaga call success. result')
-    console.log(data)
-    yield put(Actions.writeBoardSuccess(data.data));
-    yield put(commonActions.pushMessage({
+    yield put(BoardActions.writeBoardSuccess(data.data));
+    yield put(CommonActions.pushMessage({
       message: '등록 되었습니다!',
       category: 'success'
     }))
   } catch (error) {
-    yield put(Actions.writeBoardFail(error.response));
-    yield put(commonActions.pushMessage({
+    yield put(BoardActions.writeBoardFail(error.response));
+    yield put(CommonActions.pushMessage({
       message: '등록 실패하였습니다.',
       category: 'error'
     }))
@@ -52,7 +48,7 @@ function* writeBoardSaga(action: any) {
 
 export default function* watchBoard() {
   // type의 action이 실행되면 fetchBoardSaga도 항상(Every) 실행한다
-  yield takeEvery(Actions.GETBOARD, fetchBoardSaga);
-  yield takeEvery(Actions.WRITEBOARD, writeBoardSaga);
+  yield takeEvery(BoardActions.GETBOARD, fetchBoardSaga);
+  yield takeEvery(BoardActions.WRITEBOARD, writeBoardSaga);
 }
 
