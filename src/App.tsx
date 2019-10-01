@@ -7,6 +7,7 @@ import { Routing } from './Routing';
 
 import MenuContainer from './containers/common/MenuContainer';
 import ProgressContainer from './containers/common/ProgressContainer';
+import MessageContainer from './containers/common/MessageContainer'
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
     >
       <CssBaseline />
       <ProgressContainer />
+      <MessageContainer />
       <MenuContainer />
       <Routing />
     </Container>

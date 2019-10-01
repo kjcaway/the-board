@@ -31,7 +31,7 @@ class ProgressContainer extends Component<Props, State> {
       this.setState({
         progress: value,
         active:true
-      }, this.onInit)
+      }, this.initProgress)
     } else{
       this.setState({
         progress: value,
@@ -40,11 +40,18 @@ class ProgressContainer extends Component<Props, State> {
     }
   }
 
-  onInit = () => {
+  initProgress = () => {
     setTimeout(() => {
       this.setState({
-        progress: 0,
         active:false
+      }, this.initProgressToZero)
+    }, 1000)
+  }
+
+  initProgressToZero = () => {
+    setTimeout(() => {
+      this.setState({
+        progress: 0
       })
     }, 1000)
   }

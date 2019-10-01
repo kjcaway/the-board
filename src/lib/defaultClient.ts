@@ -34,7 +34,7 @@ const defaultClient = axios.create({
     'Accept': 'application/json',
     'Content-Type': 'application/json; charset=utf-8',
   }
-
+  
 })
 
 defaultClient.defaults.timeout = 3000;
@@ -55,6 +55,7 @@ defaultClient.interceptors.response.use(function (response) {
   setProgress(100);
   return response;
 }, function (error) {
+  setProgress(100);
   return Promise.reject(error);
 });
 
