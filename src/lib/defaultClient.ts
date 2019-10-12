@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseURL = (() => {
-  console.log("process.env.NODE_ENV === " + process.env.NODE_ENV)
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/'
   } else if (process.env.NODE_ENV === 'production') {
@@ -40,7 +39,7 @@ const defaultClient = axios.create({
 defaultClient.defaults.timeout = 3000;
 
 defaultClient.interceptors.request.use(function (config) {
-  setProgress(25);
+  setProgress(0);
   timer();
   return config
 }, function (error) {
